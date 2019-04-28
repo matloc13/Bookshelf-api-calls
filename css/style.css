@@ -9,19 +9,23 @@
 .searchContainer {
   padding:30px;
   border-radius: 20px;
+  margin-bottom: 10px;
 
 }
+/* .advancedSearch{
+  display:none;
+} */
 .resultsContainer {
   marign:10px auto;
   display: flex;
   flex-direction: row;
-
   overflow: scroll;
   padding:20px;
   border:1px solid brown;
 }
 .book {
   flex-grow: 1;
+  margin:0 10px;
   padding:26px;
   border:1px solid brown;
 
