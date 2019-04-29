@@ -1,25 +1,12 @@
-// https: //www.googleapis.com/books/v1/volumes?q=search+terms
-//   https: //books.google.com/ebooks?id=buc0AAAAMAAJ&dq=holmes&as_brr=4&source=webstore_bookcard
-//   GET https: //www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
-
 const searchObj = {
   baseURL: `https://www.googleapis.com/books/v1/volumes?q=`,
   ipa: `key=AIzaSyAuDK04-7AA33VqCHIAXFQWieg8cPNBaKo`,
   mainSearch: '',
   queryAuthor: '',
   querySubject: ''
-
 }
-// let baseAuthor = `inauthor:${searchObj.queryAuthor}`;
-// let baseTitle = `intitle:${searchObj.queryTitle}`;
-// let baseSubject = `subject:${searchObj.querySubject}`;
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
-
-
-
-
-// console.log(queryURL);
-
+//ajax call and dom builder
 const findTitle = () => {
   $.ajax({
     url: queryURL
@@ -38,22 +25,25 @@ const findTitle = () => {
   })
 }
 
+//jquery load wait
 $(() => {
 
+
   $('#submit').on('click', () => {
-
-
-    // console.log($('.mainInput').val());
-    searchObj.mainSearch = $('.mainInput').val();
-    searchObj.queryAuthor = $('.author').val();
-    searchObj.querySubject = $('.genre').val();
-
+    let string = $('.mainInput').val(); //main input value
+    searchObj.mainSearch = string.replace(/ /g, "+");
+    let stringAuthor = $('.author').val(); //author value
+    searchObj.queryAuthor = stringAuthor.replace(/ /g, "+");
+    searchObj.querySubject = $('.genre').val(); //genre value
+    //final query
     queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
-    // console.log(searchObj.mainSearch);
     event.preventDefault()
-    // console.log(searchObj.mainSearch);
     console.log(queryURL);
     setTimeout(findTitle, 1000);
   })
-  // findTitle();
+
+
+
+
+
 })
