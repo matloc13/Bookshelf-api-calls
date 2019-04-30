@@ -5,8 +5,8 @@ const searchObj = {
   queryAuthor: '',
   querySubject: ''
 }
-
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
+
 //ajax call and dom builder
 const findTitle = () => {
   $.ajax({
@@ -14,23 +14,26 @@ const findTitle = () => {
     // type: "GET",
   }).then((data) => {
     // console.log(data);
-
     for (let i = 0; i < 10; i++) {
-      const newAuthor = $('<div>').text(data.items[i].volumeInfo.title);
-      const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).on('click', () => {
+      const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
+      const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).on('click', (event) => {
+        const modal = $('<div>').attr('id', 'modal')
+        const modalBox = $('<div>').attr('id', 'modal-box').html(`
+          <h1>${data.items[i].volumeInfo.title}</h1>
+          <h3> By: ${data.items[i].volumeInfo.authors}</h3>
+          <p> ${data.items[i].volumeInfo.description}</p>
+        `);
+        const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
+          $(modal).remove();
+        })
+        modalBox.appendTo(modal)
+        modalBox.append(close)
+        modal.appendTo('body');
         //display .description in a modal which also shows thumbnail
-        console.log(data);
+        // console.log(data);
       })
       const book = $('<div>').addClass('book').append(bookCover).append(newAuthor);
-      book.draggable({
-        axis: "y",
-        scope: "demoBox",
-        scroll: false,
-        handle: "div",
-        start: () => {
 
-        }
-      });
       $('.newBooks').append(book);
     }
   })
@@ -57,21 +60,22 @@ $(() => {
   })
 
 
-  $('.book')
-  $('.bookshelf').droppable({
-    tolerance: "touch",
-    scope: "demoBox",
-    drop: (event, ui) => {
-      $(ui.draggable).detach().css({
-        top: 0,
-        left: 0
-      }).appendTo($(this));
-    }
-  })
+
+  // $('.bookshelf').droppable({
+  //   tolerance: "touch",
+  //   scope: "demoBox",
+  //   drop: (event, ui) => {
+  //     $('.book').draggable("option", "revert", false);
+  //     $(ui.draggable).detach().css({
+  //       top: 0,
+  //       left: 0
+  //     }).appendTo($(this));
+  //   }
   // })
-
-
-
-
-
 })
+
+
+
+
+
+// })
