@@ -5,6 +5,7 @@ const searchObj = {
   queryAuthor: '',
   querySubject: ''
 }
+
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
 //ajax call and dom builder
 const findTitle = () => {
@@ -13,6 +14,7 @@ const findTitle = () => {
     // type: "GET",
   }).then((data) => {
     // console.log(data);
+
     for (let i = 0; i < 10; i++) {
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title);
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).on('click', () => {
@@ -20,10 +22,22 @@ const findTitle = () => {
         console.log(data);
       })
       const book = $('<div>').addClass('book').append(bookCover).append(newAuthor);
-      $('.resultsContainer').append(book);
+      book.draggable({
+        axis: "y",
+        scope: "demoBox",
+        scroll: false,
+        handle: "div",
+        start: () => {
+
+        }
+      });
+      $('.newBooks').append(book);
     }
   })
 }
+
+
+
 
 //jquery load wait
 $(() => {
@@ -37,10 +51,24 @@ $(() => {
     searchObj.querySubject = $('.genre').val(); //genre value
     //final query
     queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
-    event.preventDefault()
+    event.preventDefault();
     console.log(queryURL);
     setTimeout(findTitle, 1000);
   })
+
+
+  $('.book')
+  $('.bookshelf').droppable({
+    tolerance: "touch",
+    scope: "demoBox",
+    drop: (event, ui) => {
+      $(ui.draggable).detach().css({
+        top: 0,
+        left: 0
+      }).appendTo($(this));
+    }
+  })
+  // })
 
 
 

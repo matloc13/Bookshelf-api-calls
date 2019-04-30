@@ -31,17 +31,32 @@
   display:none;
 } */
 .resultsContainer {
+
+}
+.newBooks{
   marign:10px auto;
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  overflow: auto;
   padding:20px;
-  border:4px solid teal;
+  /* border:4px solid teal; */
+
 }
 .book {
   flex-grow: 1;
-  margin:0 10px;
+  margin:0 5px;
   padding:26px;
   border:1px solid brown;
+  z-index:2;
+
+}
+
+.bookshelf{
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  overflow:auto;
+  padding:20px;
+  /* height:20px; */
 
 }
