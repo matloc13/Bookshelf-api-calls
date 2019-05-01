@@ -18,13 +18,18 @@ const findTitle = () => {
     // console.log(data);
     for (let i = 0; i < data.items.length; i++) {
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
-      const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).on('click', (event) => {
+      const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
         const modal = $('<div>').attr('id', 'modal')
         const modalBox = $('<div>').attr('id', 'modal-box').html(`
           <h1>${data.items[i].volumeInfo.title}</h1>
-          <h3> By: ${data.items[i].volumeInfo.authors}</h3>
+          <h3> by: ${data.items[i].volumeInfo.authors}</h3>
           <p> ${data.items[i].volumeInfo.description}</p>
+
+
         `);
+
+        const link = $('<a>').attr('src', data.items[i].volumeInfo.previewLink).text('see on google');
+        $(modalBox).append(link)
         const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
           $(modal).remove();
         })
@@ -32,17 +37,17 @@ const findTitle = () => {
         modalBox.append(close)
         modal.appendTo('body');
         //display .description in a modal which also
-        // console.log(data);
+
       })
       const favorite = $('<button>').addClass('cornerButton').addClass('favorite').on('click', (event) => {
         $('.bookshelf').css('border', '1px solid teal');
-        $(event.target).parent().append($('<button>').addClass('cornerButton').text('remove').on('click', () => {
-          $(event.target).parent().remove();
+        $(event.target).parent().append($('<button>').addClass('cornerButton').text('remove').on('click', (event) => {
+          $(event.target).parent().appendTo('.newBooks');
         }));
-
         $(event.target).parent().appendTo($('.bookshelf'));
         $(event.target).remove();
       });
+
       const book = $('<div>').addClass('book').append(bookCover).append(newAuthor);
 
       $('.newBooks').append(book.append(favorite));
