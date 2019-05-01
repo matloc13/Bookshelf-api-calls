@@ -35,9 +35,9 @@ const findTitle = () => {
         modalBox.append(close)
         modal.appendTo('body');
         //display .description in a modal which also
-
       })
-      const favorite = $('<button>').addClass('favorite').on('click', (event) => {
+
+      const favorite = $('<button>').addClass('cornerButton').addClass('favorite').on('click', (event) => {
         $('.bookshelf').css('border', '1px solid teal');
         $(event.target).parent().append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
           $(event.target).parent().remove();
@@ -46,9 +46,13 @@ const findTitle = () => {
         $(event.target).remove();
       });
 
-      const book = $('<div>').addClass('book').append(bookCover).append(newAuthor);
+      const book = $('<div>').addClass('book').append(bookCover.mouseover(() => {
+        $('.favorite').toggle();
+      })).append(newAuthor)
 
       $('.newBooks').append(book.append(favorite));
+
+
     }
   })
 }
@@ -77,6 +81,8 @@ $(() => {
   $('.favShow').on('click', () => {
     $('.showHide').toggle('swing')
   })
+
+
 
 
 

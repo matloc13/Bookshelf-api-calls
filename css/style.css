@@ -9,6 +9,7 @@
 }
 h1,h2 {
   /* padding:12px; */
+  background-color: inherit;
   line-height: normal;
   text-align: center;
 }
@@ -64,12 +65,7 @@ li {
   padding:20px;
 }
 
-li:hover{
-  border-bottom: 2px solid ghostwhite;
-}
-li:active {
-  color:palepink;
-}
+
 
 
 /*New div and book images*/
@@ -107,7 +103,7 @@ li:active {
   flex-direction: row;
   overflow: auto;
   padding:20px ;
-  box-shadow: 0 2px 2px rgba(0,0,0,.7)
+  box-shadow: 0 2px 2px rgba(0,0,0,.7);
   max-height: 60vh;
   max-width: 90%;
   /* border:4px solid teal; */
@@ -156,7 +152,8 @@ li:active {
 
 .favorite{
   border-radius: 10px;
-  margin:0;
+  /* margin:0; */
+  display:none;
   background-image:url(../images/black-star-icon-isolated-object-260nw-715403857.webp);
   background-size: contain;
   background-repeat: no-repeat;
@@ -164,7 +161,22 @@ li:active {
   width:21px;
   height:22px;
   z-index: 2;
-  position:absolute;
+  /* position:absolute;
   top:0;
-  right:20;
+  right:20; */
+}
+
+footer{
+  background-color: teal;
+  position: fixed;
+}
+
+li:hover{
+  border-bottom: 2px solid ghostwhite;
+}
+li:checked{
+  color:pink;
+}
+.show:checked{
+  background-color: green;
 }
