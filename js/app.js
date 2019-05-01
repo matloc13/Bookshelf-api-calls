@@ -11,8 +11,7 @@ let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${sear
 //ajax call and dom builder
 const findTitle = () => {
   $.ajax({
-    url: queryURL,
-    maxResults: 5
+    url: queryURL
     // type: "GET",
   }).then((data) => {
     // console.log(data);
@@ -76,7 +75,7 @@ $(() => {
   })
 
   $('.favShow').on('click', () => {
-    $('.showHide').toggle()
+    $('.showHide').toggle('swing')
   })
 
 
