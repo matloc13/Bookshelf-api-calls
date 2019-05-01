@@ -19,7 +19,7 @@
 <body>
 <div class="pageWrapper">
 
-  <div class="searchContainer">
+  <header class="searchContainer">
     <h1>Bookshelf</h1>
     <form action="">
       <input type="text" placeholder="title" class="input mainInput">
@@ -29,14 +29,26 @@
         <input type="text" placeholder="author" class="input author">
       </div>
     </form>
-  </div>
+    <nav>
+      <ul>
+        <li class="favShow">favorites</li>
+        <li>fight to decide</li>
+        <li>about</li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="resultsContainer">
-    <div class="bookshelf"></div>
+  <section class="resultsContainer">
+    <div class="showHide"><div class="bookshelf"></div></div>
+
     <div class="newBooks"></div>
 
 
-  </div>
+  </section>
+
+  <footer>
+
+  </footer>
 
 
 </div>

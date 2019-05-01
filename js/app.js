@@ -18,18 +18,17 @@ const findTitle = () => {
     // console.log(data);
     for (let i = 0; i < data.items.length; i++) {
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
+
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
         const modal = $('<div>').attr('id', 'modal')
         const modalBox = $('<div>').attr('id', 'modal-box').html(`
-          <h1>${data.items[i].volumeInfo.title}</h1>
-          <h3> by: ${data.items[i].volumeInfo.authors}</h3>
-          <p> ${data.items[i].volumeInfo.description}</p>
+            <h1>${data.items[i].volumeInfo.title}</h1>
+            <h3> by: ${data.items[i].volumeInfo.authors}</h3>
+            <p> ${data.items[i].volumeInfo.description}</p>
+          `);
 
-
-        `);
-
-        const link = $('<a>').attr('src', data.items[i].volumeInfo.previewLink).text('see on google');
-        $(modalBox).append(link)
+        // const link = $('<a>').attr('src', data.items[i].volumeInfo.previewLink).text('see on google');
+        // $(modalBox).append(link)
         const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
           $(modal).remove();
         })
@@ -39,10 +38,10 @@ const findTitle = () => {
         //display .description in a modal which also
 
       })
-      const favorite = $('<button>').addClass('cornerButton').addClass('favorite').on('click', (event) => {
+      const favorite = $('<button>').addClass('favorite').on('click', (event) => {
         $('.bookshelf').css('border', '1px solid teal');
-        $(event.target).parent().append($('<button>').addClass('cornerButton').text('remove').on('click', (event) => {
-          $(event.target).parent().appendTo('.newBooks');
+        $(event.target).parent().append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
+          $(event.target).parent().remove();
         }));
         $(event.target).parent().appendTo($('.bookshelf'));
         $(event.target).remove();
@@ -76,6 +75,10 @@ $(() => {
     $('.advancedSearch').toggle();
   })
 
+  $('.favShow').on('click', () => {
+    $('.showHide').toggle()
+  })
+
 
 
 
@@ -97,3 +100,5 @@ $(() => {
 
 
 // })
+
+// question 1 appending to an a to a modal the hyplerlink is in the console but not on the pageWrapper
