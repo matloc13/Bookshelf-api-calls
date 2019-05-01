@@ -6,6 +6,7 @@
 .pageWrapper {
   max-width:1100px;
   margin: 0 auto;
+  font-family: 'Cormorant Unicase', serif;
 }
 h1,h2 {
   /* padding:12px; */
@@ -48,6 +49,7 @@ img{
 }
 nav{
   width:100%;
+  margin:0;
 
 }
 ul{
@@ -55,6 +57,7 @@ ul{
   flex-direction:row;
   justify-content: space-around;
   background-color: teal;
+  margin-bottom:0;
 
 }
 li {
@@ -62,6 +65,10 @@ li {
   list-style: none;
   background-color: inherit;
   padding:20px;
+  margin-bottom: 0;
+}
+form{
+  background: transparent;
 }
 
 
@@ -69,8 +76,42 @@ li {
 
 /*New div and book images*/
 .resultsContainer {
+  position:relative;
   display: flex;
   flex-direction: column;
+}
+.showHide {
+  display: none;
+}
+
+
+.bookshelf{
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  /* position:absolute; */
+  top:30;
+  left:0;
+  padding:20px ;
+  box-shadow: 0 2px 2px rgba(0,0,0,.7);
+  max-height: 40vh;
+  width: 90%;
+  /* border:4px solid teal; */
+  border-radius: 10px;
+  /* z-index:3; */
+}
+
+.book {
+  flex: 1 1 150px;
+  position:relative;
+  margin:0 10px;
+  padding:0 11px 26px ;
+  max-width:200px;
+  background-color: transparent;
+  /* border:1px solid brown; */
+  /* z-index:1; */
+
 }
 
 .newBooks{
@@ -83,33 +124,6 @@ li {
   padding:20px;
   /* border:4px solid teal; */
 
-}
-.book {
-  flex: 1 1 150px;
-  position:relative;
-  margin:0 10px;
-  padding:0 11px 26px ;
-  max-width:200px;
-  background-color: transparent;
-  /* border:1px solid brown; */
-  z-index:1;
-
-}
-
-.bookshelf{
-  margin: 10px auto;
-  display: flex;
-  flex-direction: row;
-  overflow: auto;
-  padding:20px ;
-  box-shadow: 0 2px 2px rgba(0,0,0,.7);
-  max-height: 60vh;
-  max-width: 90%;
-  /* border:4px solid teal; */
-  border-radius: 10px;
-}
-.showHide {
-  display: none;
 }
 
 
@@ -160,7 +174,7 @@ li {
   background-color: teal;
   width:21px;
   height:22px;
-  z-index: 2;
+  /* z-index: 2; */
   /* position:absolute;
   top:0;
   right:20; */
@@ -177,6 +191,6 @@ li:hover{
 li:checked{
   color:pink;
 }
-.show:checked{
-  background-color: green;
+.light{
+  background-color:
 }

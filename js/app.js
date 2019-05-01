@@ -3,11 +3,12 @@ const searchObj = {
   ipa: `key=AIzaSyAuDK04-7AA33VqCHIAXFQWieg8cPNBaKo`,
   mainSearch: '',
   queryAuthor: '',
-  querySubject: ''
+  querySubject: '',
+  maxResults: 30
 }
 
 
-let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
+let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
 
 // class SearchWeather {
 //   constructor() {
@@ -33,8 +34,6 @@ const findTitle = () => {
             <p> ${data.items[i].volumeInfo.description}</p>
           `);
 
-        // const link = $('<a>').attr('src', data.items[i].volumeInfo.previewLink).text('see on google');
-        // $(modalBox).append(link)
         const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
           $(modal).remove();
         })
@@ -43,7 +42,7 @@ const findTitle = () => {
         modal.appendTo('body');
         //display .description in a modal which also
       })
-
+      //new fav button
       const favorite = $('<button>').addClass('cornerButton').addClass('favorite').on('click', (event) => {
         $('.bookshelf').css('border', '1px solid teal');
         $(event.target).parent().append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
@@ -52,7 +51,7 @@ const findTitle = () => {
         $(event.target).parent().appendTo($('.bookshelf'));
         $(event.target).remove();
       });
-
+      //new book
       const book = $('<div>').addClass('book').append(bookCover.mouseover(() => {
         $('.favorite').toggle();
       })).append(newAuthor)
@@ -60,14 +59,9 @@ const findTitle = () => {
         revert: true,
         scope: "demoBox",
         helper: 'clone'
-
-
-
       })
 
       $('.newBooks').append(book.append(favorite));
-
-
     }
   })
 }
@@ -80,9 +74,12 @@ $(() => {
     searchObj.mainSearch = string.replace(/ /g, "+");
     let stringAuthor = $('.author').val(); //author value
     searchObj.queryAuthor = stringAuthor.replace(/ /g, "+");
-    searchObj.querySubject = $('.genre').val(); //genre value
+    if ($('.results').val() <= 40) {
+      searchObj.maxResults = $('.results').val();
+    }
+    //genre value
     //final query
-    queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
+    queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
     event.preventDefault();
     console.log(queryURL);
     $('.newBooks').empty();
@@ -97,21 +94,17 @@ $(() => {
     $('.showHide').toggle('swing')
   })
 
-
-
-
-
-
   $('.bookshelf').droppable({
     scope: "demoBox",
     accept: ".book",
+    hoverClass: "light",
     drop: (event, ui) => {
       let dropItem = $(ui.draggable).clone();
-      alert('item dripped');
-
-      $('.bookshelf').append(dropItem.css('flex-grow', 1).append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
+      console.log(dropItem);
+      $(dropItem).children().eq(2).remove()
+      $('.bookshelf').append(dropItem.removeClass('favorite').css('flex-grow', 1).append($('<button>').removeClass('favorite').addClass('cornerButton').text('x').on('click', (event) => {
         $(event.target).parent().remove();
-      }))).removeClass('favorite')
+      })))
       // $(this).append(dropItem);
     }
   })
