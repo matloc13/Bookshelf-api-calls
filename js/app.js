@@ -6,7 +6,14 @@ const searchObj = {
   querySubject: ''
 }
 
+
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `subject:${searchObj.querySubject}` + '&' + searchObj.ipa;
+
+// class SearchWeather {
+//   constructor() {
+//     this.
+//   }
+// }
 
 //ajax call and dom builder
 const findTitle = () => {
@@ -49,6 +56,14 @@ const findTitle = () => {
       const book = $('<div>').addClass('book').append(bookCover.mouseover(() => {
         $('.favorite').toggle();
       })).append(newAuthor)
+      $(book).draggable({
+        revert: true,
+        scope: "demoBox",
+        helper: 'clone'
+
+
+
+      })
 
       $('.newBooks').append(book.append(favorite));
 
@@ -87,17 +102,19 @@ $(() => {
 
 
 
-  // $('.bookshelf').droppable({
-  //   tolerance: "touch",
-  //   scope: "demoBox",
-  //   drop: (event, ui) => {
-  //     $('.book').draggable("option", "revert", false);
-  //     $(ui.draggable).detach().css({
-  //       top: 0,
-  //       left: 0
-  //     }).appendTo($(this));
-  //   }
-  // })
+  $('.bookshelf').droppable({
+    scope: "demoBox",
+    accept: ".book",
+    drop: (event, ui) => {
+      let dropItem = $(ui.draggable).clone();
+      alert('item dripped');
+
+      $('.bookshelf').append(dropItem.css('flex-grow', 1).append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
+        $(event.target).parent().remove();
+      }))).removeClass('favorite')
+      // $(this).append(dropItem);
+    }
+  })
 })
 
 
