@@ -54,6 +54,7 @@ img{
   padding:5px;
   vertical-align: middle;
   border:1px solid teal;
+  font-family: 'Cormorant Unicase', serif;
   border-radius: 10px;
   background-color: mediumaquamarine;
 }
@@ -185,6 +186,7 @@ div{
 }
 .fight-modal {
   background-color: ghostwhite;
+  position:relative;
   margin:5% auto;
   width:90%;
   height:90%;
@@ -193,6 +195,15 @@ div{
 .fighter-div {
   width:12%;
   height:12%;
+}
+
+.close-modal {
+  background-color: rgba(0,0,0,0.2);
+  color:ghostwhite;
+  position:absolute;
+  top:0;
+  right:0;
+
 }
 
 /*buttons*/

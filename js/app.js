@@ -59,13 +59,13 @@ const shake = () => {
   const divBoundary = $('<div>').addClass('fight-modal')
   for (let i = 0; i < fighters.length; i++) {
     const fightingDiv = $('.bookshelf').children().eq(i).children().eq(0);
-    const fightClone = fightingDiv.clone(true)
+    const fightClone = fightingDiv.clone(true);
 
-    console.log($('.bookshelf').children().eq(i).children().eq(0));
+
     // const fightingDiv = $('<div>').css('background-color', randomColor()).addClass('spinAround').addClass('fighter-div').append($('<img>').attr('src', fighters[i].children().eq(0)))
-    $(divBoundary).append(fightClone).append($('<button>').text('x').addClass('close-modal'))
+    $(divBoundary).append(fightClone.addClass('spinAround'));
   }
-  $('body').append(divFight.append(divBoundary))
+  $('body').append(divFight.append(divBoundary).append($('<button>').text('x').addClass('close-modal')))
   // $(divFight).appendTo('body');
 
   $('.close-modal').on('click', () => {
@@ -76,8 +76,8 @@ const shake = () => {
 
   // $(fighters).addClass('spinAround')
   // setTimeout(() => {
-  //   $(fightingDiv).removeClass('spinAround')
-  // }, 7000);
+  //   $(fightClone).removeClass('spinAround')
+  // }, 10000);
 
 }
 
