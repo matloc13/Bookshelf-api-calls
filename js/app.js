@@ -1,3 +1,5 @@
+const dataArr = [];
+
 const searchObj = {
   baseURL: `https://www.googleapis.com/books/v1/volumes?q=`,
   ipa: `key=AIzaSyAuDK04-7AA33VqCHIAXFQWieg8cPNBaKo`,
@@ -7,8 +9,44 @@ const searchObj = {
   maxResults: 40
 }
 
-const shake = () => {
+class BOOK {
+  constructor(title, author, image, description) {
+    this.title = title,
+      this.author = author,
+      this.image = image,
+      this.description = description
+  }
+  // modalBuild() {
+  //   const modal = $('<div>').attr('id', 'modal')
+  //   const modalBox = $('<div>').attr('id', 'modal-box').html(`
+  //       <h1>${this.title}</h1>
+  //       <h3> by: ${this.authors}</h3>
+  //       <p> ${this.description}</p>
+  //     `);
+  //
+  //   const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
+  //     $(modal).remove();
+  //   })
+  //   modalBox.appendTo(modal)
+  //   modalBox.append(close)
+  //   modal.appendTo('body');
+  // }
+}
+// const buildBooks = () => {
+//
+// }
+const fight = () => {
+  const fighters = $('.bookshelf').children();
+  console.log(fighters);
+  const winNumber = Math.floor(Math.random() * fighters.length)
+  let winner = fighters[winNumber]
+  console.log(winner);
+  return winner
 
+}
+const shake = () => {
+  const winner = fight();
+  $(winner).addClass('spinAround')
 }
 
 
@@ -28,9 +66,14 @@ const findTitle = () => {
   }).then((data) => {
     // console.log(data);
     for (let i = 0; i < data.items.length; i++) {
+      dataArr.push(new BOOK(
+        data.items[i].volumeInfo.title, data.items[i].volumeInfo.authors, data.items[i].volumeInfo.imageLinks.thumbnail, data.items[i].volumeInfo.description))
+
+      console.log(dataArr);
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
 
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
+        // this.modalBuild()
         const modal = $('<div>').attr('id', 'modal')
         const modalBox = $('<div>').attr('id', 'modal-box').html(`
             <h1>${data.items[i].volumeInfo.title}</h1>
@@ -95,11 +138,20 @@ $(() => {
 
   $('.show').on('click', () => {
     $('.advancedSearch').toggle();
-  })
+  });
 
   $('.favShow').on('click', () => {
     $('.showHide').toggle('swing')
-  })
+  });
+  $('.fightBtn').on('click', () => {
+    shake()
+  });
+  $(".bookshelf").on(
+    "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+    () => {
+      $(this).removeClass("spinAround");
+    }
+  );
 
   $('.bookshelf').droppable({
     scope: "demoBox",
