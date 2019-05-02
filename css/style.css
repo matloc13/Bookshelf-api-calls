@@ -46,13 +46,15 @@ img{
 .input {
   /* background-color: steelblue;
   color: ghostwhite; */
-  margin-bottom:2px;
+  margin:2px;
 }
 #submit {
   width:8%;
   padding:5px;
   vertical-align: middle;
+  border:1px solid teal;
   border-radius: 10px;
+  background-color: mediumaquamarine;
 }
 .advancedSearch {
   display:none;
@@ -81,12 +83,11 @@ li {
 }
 form{
   background: transparent;
+  margin:0 auto;
 }
 span {
   background: transparent;
 }
-
-
 
 
 /*New div and book images*/
@@ -106,9 +107,6 @@ span {
   display: flex;
   flex-direction: row;
   overflow: auto;
-  /* position:absolute; */
-  top:30;
-  left:0;
   padding:20px ;
   box-shadow: 0 2px 2px rgba(0,0,0,.7);
   max-height: 40vh;
@@ -123,7 +121,7 @@ span {
   position:relative;
   margin:0 10px;
   padding:0 11px 26px ;
-  max-width:200px;
+  max-width:132px;
   background-color: transparent;
   /* border:1px solid brown; */
   /* z-index:1; */
@@ -160,7 +158,7 @@ span {
   background-color: ghostwhite;
   width:50vw;
   position: relative;
-  border:1px solid teal;
+  border:2px solid teal;
 	border-radius: 20px;
 	margin:150px auto;
 	padding:2%;
@@ -202,26 +200,19 @@ footer{
 }
 
 
-
-
-
-
-
-
 li:hover{
   border-bottom: 2px solid ghostwhite;
+
 }
-li:checked{
-  color:pink;
-}
+
 .light{
-  background-color:pink;
+  background-color:thistle;
 }
 
 /*************************
 animation
 *************************/
-li {
+li: {
   transform: rotate(360);
 }
 

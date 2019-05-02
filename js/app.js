@@ -35,8 +35,8 @@ class BOOK {
 // const buildBooks = () => {
 //
 // }
-const fight = () => {
-  const fighters = $('.bookshelf').children();
+const fight = (number) => {
+  const fighters = number;
   console.log(fighters);
   const winNumber = Math.floor(Math.random() * fighters.length)
   let winner = fighters[winNumber]
@@ -45,8 +45,17 @@ const fight = () => {
 
 }
 const shake = () => {
-  const winner = fight();
-  $(winner).addClass('spinAround')
+  const fighters = $('.bookshelf').children();
+  const winner = fight(fighters);
+  $(fighters).addClass('spinAround')
+  setTimeout(() => {
+    fighters.removeClass('spinAround')
+  }, 7000);
+  bookBattle();
+}
+
+const bookBattle = () => {
+  $('.bookshelf').css('z-index', '3').show()
 }
 
 
@@ -132,6 +141,7 @@ $(() => {
     queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
     event.preventDefault();
     console.log(queryURL);
+    $('form').trigger('reset');
     $('.newBooks').empty();
     setTimeout(findTitle, 1000);
   });
@@ -144,14 +154,10 @@ $(() => {
     $('.showHide').toggle('swing')
   });
   $('.fightBtn').on('click', () => {
-    shake()
+    shake();
+
   });
-  $(".bookshelf").on(
-    "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-    () => {
-      $(this).removeClass("spinAround");
-    }
-  );
+
 
   $('.bookshelf').droppable({
     scope: "demoBox",
@@ -160,10 +166,12 @@ $(() => {
     drop: (event, ui) => {
       let dropItem = $(ui.draggable).clone();
       console.log(dropItem);
+
       $(dropItem).children().eq(2).remove()
       $('.bookshelf').append(dropItem.removeClass('favorite').css('flex-grow', 1).append($('<button>').removeClass('favorite').addClass('cornerButton').text('x').on('click', (event) => {
         $(event.target).parent().remove();
       })))
+
       // $(this).append(dropItem);
     }
   })
