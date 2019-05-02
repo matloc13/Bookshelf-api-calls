@@ -4,7 +4,11 @@ const searchObj = {
   mainSearch: '',
   queryAuthor: '',
   querySubject: '',
-  maxResults: 30
+  maxResults: 40
+}
+
+const shake = () => {
+
 }
 
 
@@ -74,7 +78,10 @@ $(() => {
     searchObj.mainSearch = string.replace(/ /g, "+");
     let stringAuthor = $('.author').val(); //author value
     searchObj.queryAuthor = stringAuthor.replace(/ /g, "+");
-    if ($('.results').val() <= 40) {
+    console.log($('.results').val());
+    if ($('.results').val() == '') {
+      searchObj.maxResults = 15;
+    } else {
       searchObj.maxResults = $('.results').val();
     }
     //genre value
