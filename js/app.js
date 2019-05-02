@@ -44,18 +44,41 @@ const fight = (number) => {
   return winner
 
 }
+const randomColor = () => {
+  let red = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  return `rgb(${red}, ${green}, ${blue})`
+
+}
 const shake = () => {
   const fighters = $('.bookshelf').children();
   const winner = fight(fighters);
-  $(fighters).addClass('spinAround')
-  setTimeout(() => {
-    fighters.removeClass('spinAround')
-  }, 7000);
-  bookBattle();
-}
+  console.log(fighters);
+  const divFight = $('<div>').addClass('big-modal');
+  const divBoundary = $('<div>').addClass('fight-modal')
+  for (let i = 0; i < fighters.length; i++) {
+    const fightingDiv = $('.bookshelf').children().eq(i).children().eq(0);
+    const fightClone = fightingDiv.clone(true)
 
-const bookBattle = () => {
-  $('.bookshelf').css('z-index', '3').show()
+    console.log($('.bookshelf').children().eq(i).children().eq(0));
+    // const fightingDiv = $('<div>').css('background-color', randomColor()).addClass('spinAround').addClass('fighter-div').append($('<img>').attr('src', fighters[i].children().eq(0)))
+    $(divBoundary).append(fightClone).append($('<button>').text('x').addClass('close-modal'))
+  }
+  $('body').append(divFight.append(divBoundary))
+  // $(divFight).appendTo('body');
+
+  $('.close-modal').on('click', () => {
+    $()
+    $(divFight).remove();
+  })
+
+
+  // $(fighters).addClass('spinAround')
+  // setTimeout(() => {
+  //   $(fightingDiv).removeClass('spinAround')
+  // }, 7000);
+
 }
 
 
@@ -83,8 +106,8 @@ const findTitle = () => {
 
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
         // this.modalBuild()
-        const modal = $('<div>').attr('id', 'modal')
-        const modalBox = $('<div>').attr('id', 'modal-box').html(`
+        const modal = $('<div>').addClass('modal')
+        const modalBox = $('<div>').addClass('modal-box').html(`
             <h1>${data.items[i].volumeInfo.title}</h1>
             <h3> by: ${data.items[i].volumeInfo.authors}</h3>
             <p> ${data.items[i].volumeInfo.description}</p>
@@ -153,10 +176,12 @@ $(() => {
   $('.favShow').on('click', () => {
     $('.showHide').toggle('swing')
   });
+
   $('.fightBtn').on('click', () => {
     shake();
 
   });
+
 
 
   $('.bookshelf').droppable({

@@ -16,11 +16,12 @@ body{
   margin: 0 auto;
   font-family: 'Cormorant Unicase', serif;
 }
-h1,h2 {
+h1,h2,h3 {
   /* padding:12px; */
   background-color: inherit;
   line-height: normal;
   text-align: center;
+  font-family: 'Cormorant Unicase', serif;
 }
 img{
   position:relative;
@@ -88,6 +89,9 @@ form{
 span {
   background: transparent;
 }
+div{
+  font-weight: lighter;
+}
 
 
 /*New div and book images*/
@@ -106,6 +110,9 @@ span {
   margin: 10px auto;
   display: flex;
   flex-direction: row;
+  position: sticky;
+  top:0;
+
   overflow: auto;
   padding:20px ;
   box-shadow: 0 2px 2px rgba(0,0,0,.7);
@@ -142,9 +149,9 @@ span {
 
 
 /*modal descriptor*/
-#modal {
+.modal {
 	display: block;
-	background-color: rgba(0,0,0,.4);
+	background-color: rgba(0,0,0,.6);
 	position:fixed;
 	top:0;
 	left:0;
@@ -154,24 +161,45 @@ span {
 	overflow: auto;
 }
 
-#modal-box {
+.modal-box {
   background-color: ghostwhite;
   width:50vw;
   position: relative;
   border:2px solid teal;
 	border-radius: 20px;
-	margin:150px auto;
+	margin:20% auto;
 	padding:2%;
 	line-height: 120%;
 	box-shadow:0 2px 2px rgba(0,0,0,0.2);
-	font-family: 'Arial';
+	/* font-family: 'Arial'; */
+}
+.big-modal {
+  display: block;
+  background-color: rgba(0,0,0,.7);
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  z-index:3;
+}
+.fight-modal {
+  background-color: ghostwhite;
+  margin:5% auto;
+  width:90%;
+  height:90%;
+
+}
+.fighter-div {
+  width:12%;
+  height:12%;
 }
 
 /*buttons*/
 .cornerButton {
   border-radius: 10px;
   margin:3px 3px;
-  background-color: steelblue;
+  background-color: mediumaquamarine;
   color:ghostwhite;
   position:absolute;
   top:0;
@@ -197,6 +225,9 @@ span {
 footer{
   background-color: teal;
   position: fixed;
+}
+.cornerButton:hover{
+  background-color: steelblue;
 }
 
 
