@@ -118,7 +118,7 @@ const findTitle = () => {
       dataArr.push(new BOOK(
         data.items[i].volumeInfo.title, data.items[i].volumeInfo.authors, data.items[i].volumeInfo.imageLinks.thumbnail, data.items[i].volumeInfo.description))
 
-      // console.log(dataArr);
+      console.log(dataArr);
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
 
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
@@ -128,6 +128,8 @@ const findTitle = () => {
             <h1>${data.items[i].volumeInfo.title}</h1>
             <h3> by: ${data.items[i].volumeInfo.authors}</h3>
             <p> ${data.items[i].volumeInfo.description}</p>
+            <a href='${data.items[i].accessInfo.webReaderLink}' target='_blank'>read online</a>
+            <p>This reader is only a ${data.items[i].accessInfo.accessViewStatus}</p>
           `);
 
         const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {

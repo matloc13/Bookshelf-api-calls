@@ -2,6 +2,9 @@
   /* border:1px solid teal; */
   background-color: ghostwhite;
 }
+:root {
+  --mustard
+}
 body{
   margin:0;
 }
@@ -26,6 +29,7 @@ h1,h2,h3 {
 img{
   position:relative;
 }
+
 
 /* search / submit*/
 .searchContainer {
@@ -102,6 +106,7 @@ button{
   color:ghostwhite;
   border:1px solid transparent;
 }
+
 
 
 /*New div and book images*/
@@ -266,6 +271,10 @@ footer{
 li:hover{
   border-bottom: 2px solid ghostwhite;
 
+}
+input:focus {
+  outline:none;
+  background-color: rgb(192, 237, 231);
 }
 
 .light{
