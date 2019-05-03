@@ -75,10 +75,15 @@ const shake = () => {
   $('.close-modal').on('click', () => {
 
     $(divFight).remove();
+
   })
   setTimeout(() => {
     $(divBoundary).empty();
-    $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<span>').text('your next read').)
+    $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<button>').text('your next read').one('click', () => {
+      $('.booksToSave').append(winnerClone);
+      $(divFight).remove();
+
+    }));
   }, 4800)
 
   // $(fighters).addClass('spinAround')
@@ -188,6 +193,10 @@ $(() => {
     console.log('fight');
     shake();
 
+  });
+
+  $('.saveShow').on('click', () => {
+    $('.saveContainer').toggle('swing')
   });
 
 
