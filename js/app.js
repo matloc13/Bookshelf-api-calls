@@ -16,34 +16,34 @@ class BOOK {
       this.image = image,
       this.description = description
   }
-  // modalBuild() {
-  //   const modal = $('<div>').attr('id', 'modal')
-  //   const modalBox = $('<div>').attr('id', 'modal-box').html(`
-  //       <h1>${this.title}</h1>
-  //       <h3> by: ${this.authors}</h3>
-  //       <p> ${this.description}</p>
-  //     `);
-  //
-  //   const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
-  //     $(modal).remove();
-  //   })
-  //   modalBox.appendTo(modal)
-  //   modalBox.append(close)
-  //   modal.appendTo('body');
-  // }
+  modalBuild() {
+    const modal = $('<div>').attr('id', 'modal')
+    const modalBox = $('<div>').attr('id', 'modal-box').html(`
+      <h1>${this.title}</h1>
+      <h3> by: ${this.authors}</h3>
+      <p> ${this.description}</p>
+    `);
+
+    const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
+      $(modal).remove();
+    })
+    modalBox.appendTo(modal)
+    modalBox.append(close)
+    modal.appendTo('body');
+  }
 }
 // const buildBooks = () => {
 //
 // }
 const fight = (number) => {
   const fighters = number;
-  console.log(fighters);
+  // console.log(fighters);
   const winNumber = Math.floor(Math.random() * fighters.length)
   let winner = fighters[winNumber]
-  console.log(winner);
+  // console.log(winner);
   return winner
-
 }
+
 const randomColor = () => {
   let red = Math.floor(Math.random() * 256);
   let green = Math.floor(Math.random() * 256);
@@ -54,7 +54,7 @@ const randomColor = () => {
 const shake = () => {
   const fighters = $('.bookshelf').children();
   const winner = fight(fighters);
-  console.log(fighters);
+  console.log(winner);
   const divFight = $('<div>').addClass('big-modal');
   const divBoundary = $('<div>').addClass('fight-modal')
   //*********************testing
@@ -63,13 +63,15 @@ const shake = () => {
     const fightClone = fightingDiv.clone(true);
 
     $(divBoundary).append($('<div>').css('background-color', randomColor()).addClass("fighter-div spinAround "))
-    $(divBoundary).append(fightClone.addClass("spinAround largerLittle"));
+    $(divBoundary).append(fightClone.addClass("spinAround"));
   }
   $('body').append(divFight.append(divBoundary).append($('<button>').text('x').addClass('close-modal')))
   // $(divFight).appendTo('body');
 
+
+
   $('.close-modal').on('click', () => {
-    $()
+
     $(divFight).remove();
   })
 
@@ -101,7 +103,7 @@ const findTitle = () => {
       dataArr.push(new BOOK(
         data.items[i].volumeInfo.title, data.items[i].volumeInfo.authors, data.items[i].volumeInfo.imageLinks.thumbnail, data.items[i].volumeInfo.description))
 
-      console.log(dataArr);
+      // console.log(dataArr);
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
 
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
@@ -178,8 +180,11 @@ $(() => {
   });
 
   $('.fightBtn').on('click', () => {
+    console.log('fight');
     shake();
-
+    $('.fight-modal').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', (event) => {
+      console.log('WINNER');
+    })
   });
 
 
@@ -190,7 +195,7 @@ $(() => {
     hoverClass: "light",
     drop: (event, ui) => {
       let dropItem = $(ui.draggable).clone();
-      console.log(dropItem);
+      // console.log(dropItem);
 
       $(dropItem).children().eq(2).remove()
       $('.bookshelf').append(dropItem.removeClass('favorite').css('flex-grow', 1).append($('<button>').removeClass('favorite').addClass('cornerButton').text('x').on('click', (event) => {
