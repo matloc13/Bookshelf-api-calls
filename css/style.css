@@ -93,6 +93,13 @@ span {
 div{
   font-weight: lighter;
 }
+button{
+  font-family: 'Cormorant Unicase', serif;
+  font-size: 1.11em;
+  background-color: teal;
+  color:ghostwhite;
+  border:1px solid transparent;
+}
 
 
 /*New div and book images*/
@@ -193,6 +200,7 @@ div{
 
 }
 .fighter-div {
+  display: inline-block;
   width:12%;
   height:12%;
 }
@@ -218,8 +226,8 @@ div{
 }
 
 .favorite{
-  border-radius: 10px;
-  /* margin:0; */
+  border-radius: 50%;
+  background-color: transparent;
   display:none;
   background-image:url(../images/black-star-icon-isolated-object-260nw-715403857.webp);
   background-size: contain;
@@ -227,6 +235,7 @@ div{
   background-color: teal;
   width:21px;
   height:22px;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
   /* z-index: 2; */
   /* position:absolute;
   top:0;
@@ -251,24 +260,50 @@ li:hover{
   background-color:thistle;
 }
 
+
+
 /*************************
 animation
 *************************/
-li: {
-  transform: rotate(360);
+button:focus {
+  outline:none;
+  animation: rotate-center 0.6s ease-in-out both;
 }
 
 .spinAround {
   animation-name:winner-lap;
-  animation-duration: 5s;
-  animation-iteration-count: 3;
-  animation-timing-function: linear
+  animation-duration:5s;
+  animation-timing-function: ease-in-out;
+
+
+
+}
+.largeLittle{
+  animation-name:largerSmaller;
+  animation-duration:4s;
+  animation-timing-function: ease-in-out;
 }
 
 
 @keyframes winner-lap {
-  0% {transform: scale(.5); transform:translate(200px);}
-  20%{transform:translate(500px)}
-90% {transform: scale(1.1)}
-100% {transform: scale(1)}
+  0% {transform:rotate(0); }
+
+  50%{transform:rotate(360deg);}
+  
+  100%{transform:rotate(360deg);}
+}
+
+@keyframes largerSmaller {
+  0% {transform: scale(.5);}
+
+90% {transform: scale(1.1);}
+100% {transform: scale(1);}
+}
+
+@keyframes rotate-center {
+  0% {transform:rotate(0);}
+  37%{transform:rotate(-90deg)}
+  75%{transform:rotate(90deg);}
+  100% {transform:rotate(0); }
+
 }

@@ -57,13 +57,13 @@ const shake = () => {
   console.log(fighters);
   const divFight = $('<div>').addClass('big-modal');
   const divBoundary = $('<div>').addClass('fight-modal')
-  for (let i = 0; i < fighters.length; i++) {
+  //*********************testing
+  for (let i = 0; i < 5; i++) { // testing
     const fightingDiv = $('.bookshelf').children().eq(i).children().eq(0);
     const fightClone = fightingDiv.clone(true);
 
-
-    // const fightingDiv = $('<div>').css('background-color', randomColor()).addClass('spinAround').addClass('fighter-div').append($('<img>').attr('src', fighters[i].children().eq(0)))
-    $(divBoundary).append(fightClone.addClass('spinAround'));
+    $(divBoundary).append($('<div>').css('background-color', randomColor()).addClass("fighter-div spinAround "))
+    $(divBoundary).append(fightClone.addClass("spinAround largerLittle"));
   }
   $('body').append(divFight.append(divBoundary).append($('<button>').text('x').addClass('close-modal')))
   // $(divFight).appendTo('body');
