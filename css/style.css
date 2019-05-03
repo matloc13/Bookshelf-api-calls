@@ -109,6 +109,7 @@ button{
   /* position:relative; */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   z-index: 2;
 }
 .showHide {
@@ -122,6 +123,7 @@ button{
   flex-direction: row;
   position: sticky;
   top:0;
+  left:0;
 
   overflow: auto;
   padding:20px ;
@@ -202,7 +204,7 @@ button{
   z-index:3;
 }
 .fight-modal {
-  background-color: ghostwhite;
+  background-color: rgb(225, 247, 247);
   position:relative;
   margin:5% auto;
   width:90%;
@@ -271,7 +273,7 @@ li:hover{
 }
 .winnerdiv {
   margin:7% auto;
-  background-color: ghostwhite;
+  /* background-color: ghostwhite; */
   width:50%;
   height:50%;
 }

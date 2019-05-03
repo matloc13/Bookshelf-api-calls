@@ -81,6 +81,7 @@ const shake = () => {
     $(divBoundary).empty();
     $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<button>').text('your next read').one('click', () => {
       $('.booksToSave').append(winnerClone);
+      store(winnerClone);
       $(divFight).remove();
 
     }));
@@ -91,6 +92,10 @@ const shake = () => {
   //   $(fightClone).removeClass('spinAround')
   // }, 10000);
 
+}
+//need to pass winner clone to store title as user and jquery object as object
+const store = (book) => {
+  window.localStorage.setItem()
 }
 
 
