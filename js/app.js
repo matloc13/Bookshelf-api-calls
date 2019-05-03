@@ -65,16 +65,21 @@ const shake = () => {
     $(divBoundary).append($('<div>').css('background-color', randomColor()).addClass("fighter-div spinAround "))
     $(divBoundary).append(fightClone.addClass("spinAround"));
   }
+  const winnerClone = $(winner).clone(true)
+
   $('body').append(divFight.append(divBoundary).append($('<button>').text('x').addClass('close-modal')))
   // $(divFight).appendTo('body');
-
+  // $(divBoundary).append(winnerClone)
 
 
   $('.close-modal').on('click', () => {
 
     $(divFight).remove();
   })
-
+  setTimeout(() => {
+    $(divBoundary).empty();
+    $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<span>').text('your next read').)
+  }, 4800)
 
   // $(fighters).addClass('spinAround')
   // setTimeout(() => {
@@ -157,7 +162,7 @@ $(() => {
     searchObj.queryAuthor = stringAuthor.replace(/ /g, "+");
     console.log($('.results').val());
     if ($('.results').val() == '') {
-      searchObj.maxResults = 15;
+      searchObj.maxResults = 30;
     } else {
       searchObj.maxResults = $('.results').val();
     }
@@ -168,7 +173,7 @@ $(() => {
     console.log(queryURL);
     $('form').trigger('reset');
     $('.newBooks').empty();
-    setTimeout(findTitle, 1000);
+    setTimeout(findTitle, 500);
   });
 
   $('.show').on('click', () => {
@@ -182,9 +187,7 @@ $(() => {
   $('.fightBtn').on('click', () => {
     console.log('fight');
     shake();
-    $('.fight-modal').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', (event) => {
-      console.log('WINNER');
-    })
+
   });
 
 

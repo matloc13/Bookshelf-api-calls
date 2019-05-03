@@ -261,6 +261,12 @@ li:hover{
 .light{
   background-color:thistle;
 }
+.winnerdiv {
+  margin:7% auto;
+  background-color: ghostwhite;
+  width:50%;
+  height:50%;
+}
 
 
 
@@ -288,7 +294,7 @@ button:focus {
 
 
 @keyframes winner-lap {
-  0% {transform:translateX(200px) rotate(0); }
+  0% {transform:translateX(10px) rotate(0); }
 
 
   100%{transform:translateY(600px) rotate(1080deg);}
