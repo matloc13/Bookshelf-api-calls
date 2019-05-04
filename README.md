@@ -53,12 +53,12 @@
   - i spent a lot time messing with animations trying to make them work and look cool.
 
 #### css margins and state changes
-    - when a div leaves it 'moves' off of the page.
-   - desired effect (when i click on something it feels good and i get a result that happens smoothly.
+  - when a div leaves it 'moves' off of the page.
+    - desired effect (when i click on something it feels good and i get a result that happens smoothly.
 
 #### cloning solves moving divs problem
-   - appending problem solved by cloning.  
-   - only the first instance of a book is real the rest are CLONES
+  - appending problem solved by cloning.  
+  - only the first instance of a book is real the rest are CLONES
 
 #### local storage
   - winners of div picker are placed in local storage.
