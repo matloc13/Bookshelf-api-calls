@@ -147,8 +147,13 @@ const findTitle = () => {
       $(book).draggable({
         revert: true,
         scope: "demoBox",
-        helper: 'clone'
+        helper: 'clone',
+        cursorAt: {
+          bottom: 1
+        }
+
       })
+
 
       $('.newBooks').append(book.append(favorite));
     }
@@ -183,12 +188,13 @@ $(() => {
     $('.advancedSearch').toggle();
   });
 
-  $('.favShow').on('mouseover', () => {
+  $('.favShow').on('mouseenter', () => {
     $('.showHide').toggle('swing')
   });
   $('.favShow').on('click', () => {
     $('.showHide').toggle('slow')
   })
+
 
   $('.fightBtn').on('click', () => {
     // console.log('fight');
@@ -216,6 +222,8 @@ $(() => {
 
   $('.localFavs').on('click', () => {
     console.log(window.localStorage.getItem(userStore));
+    let name = window.localStorage.getItem('username')
+    alert(name + " " + window.localStorage.getItem(userStore))
   })
 
 
@@ -223,6 +231,7 @@ $(() => {
   $('.bookshelf').droppable({
     scope: "demoBox",
     accept: ".book",
+    tolerance: "touch",
     hoverClass: "light",
     drop: (event, ui) => {
       let dropItem = $(ui.draggable).clone();
