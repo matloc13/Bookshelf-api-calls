@@ -108,10 +108,16 @@ button{
   color:ghostwhite;
   border:1px solid transparent;
 }
-.signBtn{
+.signBtn {
   font-size: .8em;
   position:absolute;
   top:0;
+  right:20px;
+}
+.localFavs {
+  font-size: .8em;
+  position:absolute;
+  top:20px;
   right:20px;
 }
 .signIn {

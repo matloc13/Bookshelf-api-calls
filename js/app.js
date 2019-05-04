@@ -57,7 +57,7 @@ const randomColor = () => {
 const shake = () => {
   const fighters = $('.bookshelf').children();
   const winner = fight(fighters);
-  console.log(winner);
+  // console.log(winner);
   const divFight = $('<div>').addClass('big-modal');
   const divBoundary = $('<div>').addClass('fight-modal')
   //*********************testing
@@ -80,28 +80,22 @@ const shake = () => {
     $(divBoundary).empty();
     $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<button>').text('your next read').one('click', () => {
       $('.booksToSave').append(winnerClone);
-      console.log(winnerClone);
-      store('matloc', winnerClone);
+      // console.log(winnerClone);
+      store(userStore, $(winner).children().eq(1).text());
       $(divFight).remove();
 
     }));
   }, 4800)
 
-  // $(fighters).addClass('spinAround')
-  // setTimeout(() => {
-  //   $(fightClone).removeClass('spinAround')
-  // }, 10000);
-
 }
 //need to pass winner clone to store title as user and jquery object as object
 const store = (user, book) => {
-  window.localStorage.setItem(userStore, JSON.stringify(book));
+  console.log(book);
+  window.localStorage.setItem(user, JSON.stringify(book));
   // window.localStorage.getItem('matloc')
 }
 
-
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
-
 
 
 //ajax call and dom builder
@@ -117,7 +111,7 @@ const findTitle = () => {
       //
       // console.log(dataArr);
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
-
+      //book thumbnail
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
         // this.modalBuild()
         const modal = $('<div>').addClass('modal')
@@ -128,7 +122,7 @@ const findTitle = () => {
             <a href='${data.items[i].accessInfo.webReaderLink}' target='_blank'>read online</a>
             <p>This reader is only a ${data.items[i].accessInfo.accessViewStatus}</p>
           `);
-
+        //close the modal
         const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
           $(modal).remove();
         })
@@ -168,14 +162,14 @@ $(() => {
     let string = $('.mainInput').val(); //main input value
     searchObj.mainSearch = string.replace(/ /g, "+");
     let stringAuthor = $('.author').val(); //author value
-    searchObj.queryAuthor = stringAuthor.replace(/ /g, "+");
+    searchObj.queryAuthor = stringAuthor.replace(/ /g, "+"); //number of results
     console.log($('.results').val());
     if ($('.results').val() == '') {
       searchObj.maxResults = 30;
     } else {
       searchObj.maxResults = $('.results').val();
     }
-    //genre value
+
     //final query
     queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
     event.preventDefault();
@@ -184,7 +178,7 @@ $(() => {
     $('.newBooks').empty();
     setTimeout(findTitle, 500);
   });
-
+  //*****************on click
   $('.show').on('click', () => {
     $('.advancedSearch').toggle();
   });
@@ -194,7 +188,7 @@ $(() => {
   });
 
   $('.fightBtn').on('click', () => {
-    console.log('fight');
+    // console.log('fight');
     shake();
 
   });
@@ -208,12 +202,17 @@ $(() => {
     $('#signSubmit').on('click', () => {
       event.preventDefault();
       userStore = $('#userSign').val();
-      console.log(userStore);
+      // console.log(userStore);
       $('.signBtn').text(userStore);
       setTimeout(() => {
+        window.localStorage.setItem('username', userStore)
         $('.signIn').toggle('slow')
       }, 500)
     })
+  })
+
+  $('.localFavs').on('click', () => {
+    // console.log(JSON.parse(window.localStorage.getItem(userStore)));
   })
 
 
@@ -231,15 +230,6 @@ $(() => {
         $(event.target).parent().remove();
       })))
 
-      // $(this).append(dropItem);
     }
   })
 })
-
-
-
-
-
-// })
-
-// question 1 appending to an a to a modal the hyplerlink is in the console but not on the pageWrapper
