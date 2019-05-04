@@ -212,7 +212,7 @@ $(() => {
   })
 
   $('.localFavs').on('click', () => {
-    // console.log(JSON.parse(window.localStorage.getItem(userStore)));
+    console.log(window.localStorage.getItem(userStore));
   })
 
 

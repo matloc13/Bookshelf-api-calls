@@ -300,7 +300,8 @@ input:focus {
 }
 .tooltip .tooltiptext{
   visibility: hidden;
-  position:absolute;
+  /* position:absolute; */
+  float:left;
   color:var(--darknavy);
   background-color: thistle;
   z-index:2;
@@ -320,6 +321,9 @@ animation
 button:focus {
   outline:none;
   animation: rotate-center 0.6s ease-in-out both;
+}
+.favShow:cl{
+  background-color: thistle;
 }
 
 .spinAround {
@@ -361,9 +365,10 @@ button:focus {
   button {
     border-top:.5px solid ghostwhite;
   }
-  .signBtn {
+  .signBtn, .localFavs {
     display: none;
   }
+
   #submit {
     font-size: .2em;
   }
