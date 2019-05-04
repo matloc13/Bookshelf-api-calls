@@ -368,6 +368,9 @@ button:focus {
   .signBtn, .localFavs {
     display: none;
   }
+  .tooltiptext {
+    display: none;
+  }
 
   #submit {
     font-size: .2em;
@@ -377,5 +380,21 @@ button:focus {
   }
   .modal-box {
     width:90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .signBtn{
+    position:absolute;
+    top:15px;
+    right:50px;
+  }
+  .localFavs {
+    position: absolute;
+    top:30px;
+    right:50px;
+  }
+  .big-modal {
+    width:100vw;
   }
 }

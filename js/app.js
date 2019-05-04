@@ -183,9 +183,12 @@ $(() => {
     $('.advancedSearch').toggle();
   });
 
-  $('.favShow').on('click', () => {
+  $('.favShow').on('mouseover', () => {
     $('.showHide').toggle('swing')
   });
+  $('.favShow').on('click', () => {
+    $('.showHide').toggle('slow')
+  })
 
   $('.fightBtn').on('click', () => {
     // console.log('fight');
