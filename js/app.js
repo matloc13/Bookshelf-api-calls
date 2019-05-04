@@ -1,4 +1,4 @@
-const dataArr = [];
+// const dataArr = [];
 let userStore = '';
 const searchObj = {
   baseURL: `https://www.googleapis.com/books/v1/volumes?q=`,
@@ -148,9 +148,10 @@ const findTitle = () => {
         revert: true,
         scope: "demoBox",
         helper: 'clone',
-        cursorAt: {
-          bottom: 1
+        cusorAt: {
+          bottom: 3
         }
+
 
       })
 
@@ -193,13 +194,18 @@ $(() => {
   });
   $('.favShow').on('click', () => {
     $('.showHide').toggle('slow')
+  });
+  $('.book').on('mouseover', (event) => {
+    $(event.target).animate({
+      opacity: "-=.5"
+
+    }, 2000)
   })
 
 
   $('.fightBtn').on('click', () => {
     // console.log('fight');
     shake();
-
   });
 
   $('.saveShow').on('click', () => {

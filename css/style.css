@@ -214,8 +214,10 @@ button{
 }
 
 .modal-box {
-  background-color: ghostwhite;
+  transition: opacity 2s, ;
 
+  background-color: ghostwhite;
+  opacity: 1;
   width:50vw;
   position: relative;
   border:2px solid teal;
@@ -357,8 +359,8 @@ button:focus {
 
 @keyframes rotate-center {
   0% {transform:rotate(0);}
-  37%{transform:rotate(-90deg)}
-  75%{transform:rotate(90deg);}
+  37%{transform:rotate(-45deg)}
+  75%{transform:rotate(45deg);}
   100% {transform:rotate(0); }
 
 }
