@@ -1,5 +1,5 @@
 const dataArr = [];
-
+let userStore = '';
 const searchObj = {
   baseURL: `https://www.googleapis.com/books/v1/volumes?q=`,
   ipa: `key=AIzaSyAuDK04-7AA33VqCHIAXFQWieg8cPNBaKo`,
@@ -7,34 +7,35 @@ const searchObj = {
   queryAuthor: '',
   querySubject: '',
   maxResults: 40
+
 }
 
-class BOOK {
-  constructor(title, author, image, description) {
-    this.title = title,
-      this.author = author,
-      this.image = image,
-      this.description = description
-  }
-  modalBuild() {
-    const modal = $('<div>').attr('id', 'modal')
-    const modalBox = $('<div>').attr('id', 'modal-box').html(`
-      <h1>${this.title}</h1>
-      <h3> by: ${this.authors}</h3>
-      <p> ${this.description}</p>
-    `);
 
-    const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
-      $(modal).remove();
-    })
-    modalBox.appendTo(modal)
-    modalBox.append(close)
-    modal.appendTo('body');
-  }
-}
-// const buildBooks = () => {
+
+// class BOOK {
+//   constructor(title, author, image, description) {
+//     this.title = title,
+//       this.author = author,
+//       this.image = image,
+//       this.description = description
+//   }
+//   modalBuild() {
+//     const modal = $('<div>').attr('id', 'modal')
+//     const modalBox = $('<div>').attr('id', 'modal-box').html(`
+//       <h1>${this.title}</h1>
+//       <h3> by: ${this.authors}</h3>
+//       <p> ${this.description}</p>
+//     `);
 //
+//     const close = $('<button>').text('x').addClass('cornerButton').on('click', () => {
+//       $(modal).remove();
+//     })
+//     modalBox.appendTo(modal)
+//     modalBox.append(close)
+//     modal.appendTo('body');
+//   }
 // }
+//book to read
 const fight = (number) => {
   const fighters = number;
   // console.log(fighters);
@@ -51,6 +52,8 @@ const randomColor = () => {
   return `rgb(${red}, ${green}, ${blue})`
 
 }
+
+
 const shake = () => {
   const fighters = $('.bookshelf').children();
   const winner = fight(fighters);
@@ -58,22 +61,18 @@ const shake = () => {
   const divFight = $('<div>').addClass('big-modal');
   const divBoundary = $('<div>').addClass('fight-modal')
   //*********************testing
-  for (let i = 0; i < 5; i++) { // testing
+  for (let i = 0; i < fighters.length; i++) { // testing
     const fightingDiv = $('.bookshelf').children().eq(i).children().eq(0);
     const fightClone = fightingDiv.clone(true);
-
+    //create colored empty divs for animation
     $(divBoundary).append($('<div>').css('background-color', randomColor()).addClass("fighter-div spinAround "))
     $(divBoundary).append(fightClone.addClass("spinAround"));
   }
   const winnerClone = $(winner).clone(true)
-
+  //clone winner to add to new page
   $('body').append(divFight.append(divBoundary).append($('<button>').text('x').addClass('close-modal')))
-  // $(divFight).appendTo('body');
-  // $(divBoundary).append(winnerClone)
-
 
   $('.close-modal').on('click', () => {
-
     $(divFight).remove();
 
   })
@@ -81,7 +80,8 @@ const shake = () => {
     $(divBoundary).empty();
     $(divBoundary).append($('<div>').addClass('winnerdiv').append(winnerClone)).append($('<button>').text('your next read').one('click', () => {
       $('.booksToSave').append(winnerClone);
-      store(winnerClone);
+      console.log(winnerClone);
+      store('matloc', winnerClone);
       $(divFight).remove();
 
     }));
@@ -94,18 +94,15 @@ const shake = () => {
 
 }
 //need to pass winner clone to store title as user and jquery object as object
-// const store = (book) => {
-//   window.localStorage.setItem()
-// }
+const store = (user, book) => {
+  window.localStorage.setItem('name', JSON.stringify(book));
+  window.localStorage.getItem('matloc')
+}
 
 
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
 
-// class SearchWeather {
-//   constructor() {
-//     this.
-//   }
-// }
+
 
 //ajax call and dom builder
 const findTitle = () => {
@@ -115,10 +112,10 @@ const findTitle = () => {
   }).then((data) => {
     // console.log(data);
     for (let i = 0; i < data.items.length; i++) {
-      dataArr.push(new BOOK(
-        data.items[i].volumeInfo.title, data.items[i].volumeInfo.authors, data.items[i].volumeInfo.imageLinks.thumbnail, data.items[i].volumeInfo.description))
-
-      console.log(dataArr);
+      // dataArr.push(new BOOK(
+      //   data.items[i].volumeInfo.title, data.items[i].volumeInfo.authors, data.items[i].volumeInfo.imageLinks.thumbnail, data.items[i].volumeInfo.description))
+      //
+      // console.log(dataArr);
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
 
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
@@ -147,11 +144,7 @@ const findTitle = () => {
         bookClone.append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
           $(event.target).parent().remove();
         }));
-        // $(event.target).parent().appendTo($('.bookshelf'));
-        // const bookClone = $(event.target).parent().clone(true);
         bookClone.appendTo($('.bookshelf'));
-        // $('.bookshelf').append($(event.target).parent().clone(true))
-        // $(event.target).remove();
       });
       //new book
       const book = $('<div>').addClass('book').append(bookCover.mouseover(() => {
@@ -208,6 +201,11 @@ $(() => {
 
   $('.saveShow').on('click', () => {
     $('.saveContainer').toggle('swing')
+
+    $('body').append($('<div>').append($('<form>').append($('<input>').attr('placeholder', 'type username').addClass('userInput')).append('<button>').on('click', () => {
+      userStore = $('.userInput').val;
+      console.log(userStore);
+    })))
   });
 
 

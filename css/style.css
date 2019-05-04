@@ -1,6 +1,6 @@
 * {
   /* border:1px solid teal; */
-  background-color: ghostwhite;
+  /* background-color: ghostwhite; */
 }
 :root {
   --mustard:rgb(167, 172, 40);
@@ -80,14 +80,14 @@ ul{
   display: flex;
   flex-direction:row;
   justify-content: space-around;
-  /* background-color: teal; */
+  background-color: teal;
   margin-bottom:0;
 
 }
 li {
   color:ghostwhite;
   list-style: none;
-  background-color: inherit;
+  background-color: transparent;
   padding:20px;
   margin-bottom: 0;
 }
@@ -169,7 +169,7 @@ button{
   display:none;
 }
 .booksToSave {
-  diplay:flex;
+  display:flex;
   flex-grow: 1;
   padding:20px;
 }
@@ -177,6 +177,7 @@ button{
 
 /*modal descriptor*/
 .modal {
+
 	display: block;
 	background-color: rgba(0,0,0,.6);
 	position:fixed;
@@ -190,6 +191,7 @@ button{
 
 .modal-box {
   background-color: ghostwhite;
+
   width:50vw;
   position: relative;
   border:2px solid teal;
@@ -211,6 +213,8 @@ button{
   z-index:3;
 }
 .fight-modal {
+  transition-duration: 5s;
+  transition-timing-function:linear;
   background-color: var(--whiteblue);
   position:relative;
   margin:5% auto;
@@ -284,9 +288,18 @@ input:focus {
 }
 .winnerdiv {
   margin:7% auto;
-  /* background-color: ghostwhite; */
   width:50%;
   height:50%;
+}
+.tooltip .tooltiptext{
+  visibility: hidden;
+  position:absolute;
+  color:var(--darknavy);
+  background-color: thistle;
+  z-index:2;
+}
+.tooltip:hover .tooltiptext {
+visibility: visible;
 }
 
 
@@ -295,15 +308,7 @@ input:focus {
 animation
 *************************/
 
-.green{
 
-background-color:var(--mustard);
-transition-duration:5s;
-transition-timing-function: infinite;
-}
-.darkgreen{
-  background-color: teal;
-}
 
 button:focus {
   outline:none;
@@ -339,4 +344,23 @@ button:focus {
   75%{transform:rotate(90deg);}
   100% {transform:rotate(0); }
 
+}
+
+
+@media (max-width:375px ) {
+  ul {
+    flex-direction: column;
+  }
+  button {
+    border-top:.5px solid ghostwhite;
+  }
+  #submit {
+    font-size: .2em;
+  }
+  .saveShow{
+    display:none;
+  }
+  .modal-box {
+    width:90%;
+  }
 }

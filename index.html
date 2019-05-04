@@ -20,7 +20,7 @@
 <body>
 <div class="pageWrapper">
 
-  <header class="searchContainer clearfix green darkgreen">
+  <header class="searchContainer clearfix">
     <!-- <h1>Bookshelf</h1> -->
     <form action="">
       <input type="text" placeholder="find a book" class="input mainInput">
@@ -28,12 +28,13 @@
       <input type="checkbox" class='show'/><span>refine</span>
       <div class="advancedSearch">
         <input type="text" placeholder="author" class="input author">
-        <input type="text" placeholder="# of results" class="input results">
+        <input type="text" placeholder="# of results" class="input results"/>
+        <!-- <input type="text" placeholder="subject" class="input subject"/> -->
       </div>
     </form>
     <nav>
-      <ul class ="green darkgreen">
-        <li><button class="favShow">books shortlist</button></li>
+      <ul>
+        <li class=" tooltip"><button class="favShow">books shortlist</button><span class="tooltiptext">drag your favorites here</span></li>
         <li><button class="fightBtn">need help to decide</button></li>
         <li><button class="saveShow">Books to Read</button></li>
       </ul>
