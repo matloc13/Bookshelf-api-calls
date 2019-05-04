@@ -108,6 +108,18 @@ button{
   color:ghostwhite;
   border:1px solid transparent;
 }
+.signBtn{
+  font-size: .8em;
+  position:absolute;
+  top:0;
+  right:20px;
+}
+.signIn {
+  display: none;
+  position:absolute;
+  top:5px;
+  right:20px;
+}
 
 
 
@@ -353,6 +365,9 @@ button:focus {
   }
   button {
     border-top:.5px solid ghostwhite;
+  }
+  .signBtn {
+    display: none;
   }
   #submit {
     font-size: .2em;

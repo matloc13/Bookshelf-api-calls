@@ -95,8 +95,8 @@ const shake = () => {
 }
 //need to pass winner clone to store title as user and jquery object as object
 const store = (user, book) => {
-  window.localStorage.setItem('name', JSON.stringify(book));
-  window.localStorage.getItem('matloc')
+  window.localStorage.setItem(userStore, JSON.stringify(book));
+  // window.localStorage.getItem('matloc')
 }
 
 
@@ -200,13 +200,21 @@ $(() => {
   });
 
   $('.saveShow').on('click', () => {
-    $('.saveContainer').toggle('swing')
-
-    $('body').append($('<div>').append($('<form>').append($('<input>').attr('placeholder', 'type username').addClass('userInput')).append('<button>').on('click', () => {
-      userStore = $('.userInput').val;
-      console.log(userStore);
-    })))
+    $('.saveContainer').toggle('fast')
   });
+
+  $('.signBtn').on('click', () => {
+    $('.signIn').toggle('slow')
+    $('#signSubmit').on('click', () => {
+      event.preventDefault();
+      userStore = $('#userSign').val();
+      console.log(userStore);
+      $('.signBtn').text(userStore);
+      setTimeout(() => {
+        $('.signIn').toggle('slow')
+      }, 500)
+    })
+  })
 
 
 

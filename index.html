@@ -12,6 +12,7 @@
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+  <script src="jquery.ui.touch-punch.min.js"></script>
   <script src="js/app.js" charset="utf-8"></script>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Unicase:400,600" rel="stylesheet">
@@ -21,6 +22,11 @@
 <div class="pageWrapper">
 
   <header class="searchContainer clearfix">
+      <button class="signBtn">sign in</button>
+      <div class="signIn">
+        <input id="userSign" type="text" placeholder="username"/>
+        <input id="signSubmit" type="submit"/>
+      </div>
     <!-- <h1>Bookshelf</h1> -->
     <form action="">
       <input type="text" placeholder="find a book" class="input mainInput">
