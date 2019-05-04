@@ -9,6 +9,11 @@
    - https://matloc13.github.io/Bookshelf-api-calls/
    - https://trello.com/b/aysWu0UX/bookshelf
 
+   -jquery ui library
+   -jquery touch punch library
+
+
+
 #### create html template adding classes for containers
   - directly in html doc to give page a skeleton to build of off.
 

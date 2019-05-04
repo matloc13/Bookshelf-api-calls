@@ -35,7 +35,8 @@ const searchObj = {
 //     modal.appendTo('body');
 //   }
 // }
-//book to read
+
+//randomchooser
 const fight = (number) => {
   const fighters = number;
   // console.log(fighters);
@@ -44,7 +45,7 @@ const fight = (number) => {
   // console.log(winner);
   return winner
 }
-
+//makes animation a little prettier
 const randomColor = () => {
   let red = Math.floor(Math.random() * 256);
   let green = Math.floor(Math.random() * 256);
@@ -53,8 +54,8 @@ const randomColor = () => {
 
 }
 
-
-const shake = () => {
+//pick a winner drop animation
+const pickAWinner = () => {
   const fighters = $('.bookshelf').children();
   const winner = fight(fighters);
   // console.log(winner);
@@ -113,7 +114,7 @@ const findTitle = () => {
       const newAuthor = $('<div>').text(data.items[i].volumeInfo.title).css("border", "1px solid teal");
       //book thumbnail
       const bookCover = $('<img>').attr('src', data.items[i].volumeInfo.imageLinks.thumbnail).attr('alt', data.items[i].volumeInfo.title).on('click', (event) => {
-        // this.modalBuild()
+
         const modal = $('<div>').addClass('modal')
         const modalBox = $('<div>').addClass('modal-box').html(`
             <h1>${data.items[i].volumeInfo.title}</h1>
@@ -152,16 +153,14 @@ const findTitle = () => {
           bottom: 3
         }
 
-
       })
-
 
       $('.newBooks').append(book.append(favorite));
     }
   })
 }
 
-//jquery load wait
+//jquery onload
 $(() => {
 
   $('#submit').on('click', () => {
@@ -198,14 +197,13 @@ $(() => {
   $('.book').on('mouseover', (event) => {
     $(event.target).animate({
       opacity: "-=.5"
-
     }, 2000)
-  })
+  });
 
 
   $('.fightBtn').on('click', () => {
     // console.log('fight');
-    shake();
+    pickAWinner();
   });
 
   $('.saveShow').on('click', () => {
@@ -233,7 +231,7 @@ $(() => {
   })
 
 
-
+  //droppable action
   $('.bookshelf').droppable({
     scope: "demoBox",
     accept: ".book",
