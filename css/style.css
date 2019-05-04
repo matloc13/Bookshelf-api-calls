@@ -214,7 +214,7 @@ button{
 }
 
 .modal-box {
-  transition: opacity 2s, ;
+  transition: opacity 2s ;
 
   background-color: ghostwhite;
   opacity: 1;
@@ -367,6 +367,9 @@ button:focus {
 
 
 @media (max-width:375px ) {
+  .pageWrapper{
+    max-width: 375px;
+  }
   .searchContainer{
     position:sticky;
 
@@ -408,6 +411,9 @@ button:focus {
 }
 
 @media (max-width: 768px) {
+  .pageWrapper{
+    max-width: 767px;
+  }
   .signBtn{
     position:absolute;
     top:15px;
