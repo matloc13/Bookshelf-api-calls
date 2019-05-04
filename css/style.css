@@ -271,30 +271,19 @@ button{
   width:21px;
   height:22px;
   border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
-  /* z-index: 2; */
-  /* position:absolute;
-  top:0;
-  right:20; */
+
 }
 
-footer{
-  background-color: teal;
-  position: fixed;
-}
 .cornerButton:hover{
   background-color: steelblue;
 }
-
-
 li:hover{
   border-bottom: 2px solid ghostwhite;
-
 }
 input:focus {
   outline:none;
   background-color: var(--whiteblue);
 }
-
 .light{
   background-color:thistle;
 }
