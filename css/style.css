@@ -3,7 +3,11 @@
   background-color: ghostwhite;
 }
 :root {
-  --mustard
+  --mustard:rgb(167, 172, 40);
+  --verdantgreen:rgb(68, 163, 45);
+  --darknavy:rgb(30, 48, 45);
+  --greenblue:rgb(41, 140, 97);
+  --whiteblue:rgb(225, 247, 247);
 }
 body{
   margin:0;
@@ -51,7 +55,7 @@ img{
 .input {
   /* background-color: steelblue;
   color: ghostwhite; */
-  margin:2px;
+  margin:3px;
 }
 #submit {
   width:8%;
@@ -64,21 +68,19 @@ img{
 }
 .advancedSearch {
   display:none;
-  background-color: teal;
+  background-color: transparent;
   margin:1px;
   /* width:13.38%; */
 }
 nav{
   width:100%;
   margin:0;
-
-
 }
 ul{
   display: flex;
   flex-direction:row;
   justify-content: space-around;
-  background-color: teal;
+  /* background-color: teal; */
   margin-bottom:0;
 
 }
@@ -209,7 +211,7 @@ button{
   z-index:3;
 }
 .fight-modal {
-  background-color: rgb(225, 247, 247);
+  background-color: var(--whiteblue);
   position:relative;
   margin:5% auto;
   width:90%;
@@ -274,7 +276,7 @@ li:hover{
 }
 input:focus {
   outline:none;
-  background-color: rgb(192, 237, 231);
+  background-color: var(--whiteblue);
 }
 
 .light{
@@ -292,6 +294,17 @@ input:focus {
 /*************************
 animation
 *************************/
+
+.green{
+
+background-color:var(--mustard);
+transition-duration:5s;
+transition-timing-function: infinite;
+}
+.darkgreen{
+  background-color: teal;
+}
+
 button:focus {
   outline:none;
   animation: rotate-center 0.6s ease-in-out both;
@@ -301,7 +314,6 @@ button:focus {
   animation-name:winner-lap;
   animation-duration:5s;
   animation-timing-function: ease-in-out;
-
 
 
 }

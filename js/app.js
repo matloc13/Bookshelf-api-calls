@@ -94,9 +94,9 @@ const shake = () => {
 
 }
 //need to pass winner clone to store title as user and jquery object as object
-const store = (book) => {
-  window.localStorage.setItem()
-}
+// const store = (book) => {
+//   window.localStorage.setItem()
+// }
 
 
 let queryURL = searchObj.baseURL + searchObj.mainSearch + '+' + `inauthor:${searchObj.queryAuthor}` + '&' + `maxResults=${searchObj.maxResults}` + '&' + searchObj.ipa;
@@ -143,11 +143,15 @@ const findTitle = () => {
       //new fav button
       const favorite = $('<button>').addClass('cornerButton').addClass('favorite').on('click', (event) => {
         $('.bookshelf').css('border', '1px solid teal');
-        $(event.target).parent().append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
+        const bookClone = $(event.target).parent().clone(true);
+        bookClone.append($('<button>').addClass('cornerButton').text('x').on('click', (event) => {
           $(event.target).parent().remove();
         }));
-        $(event.target).parent().appendTo($('.bookshelf'));
-        $(event.target).remove();
+        // $(event.target).parent().appendTo($('.bookshelf'));
+        // const bookClone = $(event.target).parent().clone(true);
+        bookClone.appendTo($('.bookshelf'));
+        // $('.bookshelf').append($(event.target).parent().clone(true))
+        // $(event.target).remove();
       });
       //new book
       const book = $('<div>').addClass('book').append(bookCover.mouseover(() => {
